@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useCallback } from 'react'
 import { View, Text, SafeAreaView, ScrollView, TextInput, TouchableOpacity, Image } from 'react-native'
 import { styles } from '../Utils/Styles'
 import firestore from '@react-native-firebase/firestore'
 import IconM from 'react-native-vector-icons/MaterialCommunityIcons'
-import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
+// import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
 
 
 const ProductAdd = () => {
@@ -35,7 +35,7 @@ const ProductAdd = () => {
 
     //ürün ekleme listesi
     function pList() {
-    const productList = firestore().collection("Ürün Bilgileri"); //evrak numarası
+        const productList = firestore().collection("Ürün Bilgileri"); //evrak numarası
         productList.doc(lieferscheinnummer).set({
             Companyname: companyName,
             Tarih: lieferschindatum,
@@ -56,32 +56,37 @@ const ProductAdd = () => {
             Miktar: menge,
         })
     }
-    const openCamara = () => {
-        const options = {
-        storageOptions: {
-        path: "images",
-        mediaType: "photo",
-        },
-        
-        includeBase64: true,
-        };
-        
-        launchCamera(options, response => {
-        console.log("Response = ", response);
-        if (response.didCancel) {
-        console.log("User cancelled image picker");
-        } else if (response.error) {
-        console.log("ImagePicker Error: ", response.error);
-        } else if (response.customButton) {
-        console.log("User tapped custom button: ", response.customButton);
-        } else {
-        // You can also display the image using data:
-        const source = {uri: "data:image/jpeg;base64," + response.base64};
-        setimageUri(source);
-        }
-        });
-        };
 
+
+    /*  const openCamara = () => {
+              const options = {
+                  storageOptions: {
+                      path: "images",
+                      mediaType: "photo",
+                  },
+      
+                  includeBase64: true,
+              };
+      
+      
+              launchCamera(options, response => {
+                  console.log("Response = ", response);
+                  if (response.didCancel) {
+                      console.log("User cancelled image picker");
+                  } else if (response.error) {
+                      console.log("ImagePicker Error: ", response.error);
+                  } else if (response.customButton) {
+                      console.log("User tapped custom button: ", response.customButton);
+                  } else {
+                      // You can also display the image using data:
+                      const sourcee = { uri: "data:image/jpeg;base64," + response.base64 };
+                      setimageUri(sourcee);
+                  }
+              });
+      
+      
+          };
+    */
     return (
         <SafeAreaView>
             <ScrollView style={styles.productScroll}
@@ -93,11 +98,11 @@ const ProductAdd = () => {
                 <Text style={{ paddingBottom: 5 }}>Şirketinizi şeçin ve yeni bir ürün girin</Text>
 
 
-                <View style={{ flex: 1,  justifyContent: "center" ,alignItems:"center"}}>
-                    <Image source={imageUri}
-                    style={{width:75,height:75,backgroundColor:"grey"}} />
 
-                    <TouchableOpacity onPress={openCamara} >
+                <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+
+                    <TouchableOpacity // onPress={() => openCamara()} 
+                    >
 
                         <IconM name="plus" color="tomato" size={35} />
                     </TouchableOpacity>
@@ -181,6 +186,10 @@ const ProductAdd = () => {
             </ScrollView>
         </SafeAreaView>
     )
-}
+};
+
+
+
+
 
 export default ProductAdd
