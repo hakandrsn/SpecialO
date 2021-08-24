@@ -105,10 +105,12 @@ export const styles = StyleSheet.create({
         flex: 1,
         alignItems: "center",
         justifyContent: "center",
-        marginTop: 10
+        marginTop: 20,
+
     },
     flat: {
         width: "100%",
+
 
     },
     flatwiev: {
@@ -124,15 +126,25 @@ export const styles = StyleSheet.create({
     flattxt: {
         fontSize: 19,
         textAlign: "center",
-        fontWeight:"300"
+        fontWeight: "300"
     },
-    flattxt1:{
-        fontSize:20,
-        textAlign:"center",
-        fontWeight:"300",
-        borderBottomWidth:.5,
-        width:"70%",
-        margin:7,
-        color:"tomato"
+    flattxt1: {
+        fontSize: 20,
+        textAlign: "center",
+        fontWeight: "300",
+        //borderBottomWidth:.5,
+        width: "70%",
+        margin: 7,
+        color: "tomato"
     },
+    Protxt: { 
+        fontSize: 19, 
+        alignSelf: "center", 
+        borderWidth: .4,
+        width: "70%", 
+        textAlign: "center", 
+        borderRadius: 10, 
+        marginBottom: 7 ,
+       
+    }
 })

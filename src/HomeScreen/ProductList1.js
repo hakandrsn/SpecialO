@@ -9,16 +9,14 @@ const ProductList1 = ({navigation}) => {
     const companysColl = firestore().collection("Companys");
     const productsColl = firestore().collection("Ürün Bilgileri");
     const [current, setCurrent] = useState({});
-
     useEffect(() => {
-        return () => {
+        return async () => {
             companysColl.onSnapshot(querySnapshot => {
                 const comp = [];
                 querySnapshot.forEach(doc => {
                     const data = doc.data()
                     comp.push(data)
                     setCurrent(comp)
-
                 })
             })
         }
@@ -27,6 +25,7 @@ const ProductList1 = ({navigation}) => {
 
     return (
         <SafeAreaView style={styles.listContainer}>
+            <Text style={{padding:20,fontSize:25,color:"#f00",fontWeight:"bold"}} >Şirketler Listesi</Text>
             <FlatList
                 style={styles.flat}
                 data={current}

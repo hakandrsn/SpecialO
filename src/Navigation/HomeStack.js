@@ -7,6 +7,7 @@ import  ProductAdd from '../HomeScreen/ProductAdd'
 import  ProductList1  from '../HomeScreen/ProductList1'
 import  ProductList2  from '../HomeScreen/ProductList2'
 import IconM from "react-native-vector-icons/MaterialIcons"
+import ProductList3 from '../HomeScreen/ProductList3'
 
 
 
@@ -57,10 +58,16 @@ const HomeScreenStack = () => {
     return (
         <Stack.Navigator initialRouteName="ProductList1" >
             <Stack.Screen name="ProductList1" component={ProductList1} options={{
-                headerShown: false
+                title:"Şirketler",
+                headerShown: true
             }}
             />
             <Stack.Screen name="ProductList2" component={ProductList2} options={{
+                title:"Şirket Özellikleri",
+                headerShown: true
+            }} />
+                        <Stack.Screen name="ProductList3" component={ProductList3} options={{
+                title:"Ürün Bilgileri",
                 headerShown: true
             }} />
         </Stack.Navigator>
