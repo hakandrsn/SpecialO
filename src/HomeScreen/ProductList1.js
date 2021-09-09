@@ -5,21 +5,19 @@ import firestore from '@react-native-firebase/firestore'
 
 
 
-const ProductList1 = ({navigation}) => {
+ const ProductList1 = ({navigation}) => {
     const companysColl = firestore().collection("Companys");
-    const productsColl = firestore().collection("Ürün Bilgileri");
     const [current, setCurrent] = useState({});
+
     useEffect(() => {
-        return async () => {
-            companysColl.onSnapshot(querySnapshot => {
-                const comp = [];
-                querySnapshot.forEach(doc => {
-                    const data = doc.data()
-                    comp.push(data)
-                    setCurrent(comp)
-                })
+        companysColl.onSnapshot(querySnapshot => {
+            const comp = [];
+            querySnapshot.forEach(doc => {
+                const data = doc.data()
+                comp.push(data)
+                setCurrent(comp)
             })
-        }
+        })
     }, [])
 
 
